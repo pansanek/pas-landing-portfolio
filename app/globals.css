@@ -1,0 +1,125 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-poppins), var(--font-geist-sans), "Geist Fallback";
+  --font-sans: var(--font-geist-sans), "Geist Fallback";
+  --font-mono: var(--font-geist-mono), "Geist Mono Fallback";
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --shadow-neo: 8px 8px 16px var(--neo-dark), -8px -8px 16px var(--neo-light);
+  --shadow-neo-sm: 4px 4px 8px var(--neo-dark), -4px -4px 8px var(--neo-light);
+  --shadow-neo-lg:
+    12px 12px 24px var(--neo-dark), -12px -12px 24px var(--neo-light);
+  --shadow-neo-inset:
+    inset 5px 5px 10px var(--neo-dark), inset -5px -5px 10px var(--neo-light);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+}
+
+:root {
+  --background: #f0f0f0;
+  --foreground: #1f2937;
+  --card: #e8e8e8;
+  --card-foreground: #1f2937;
+  --muted: #e8e8e8;
+  --muted-foreground: #6b7280;
+  --accent: #167acc;
+  --accent-foreground: #2e0505;
+  --accent-soft: #3588e6;
+  --border: #d9d9d9;
+  --ring: #1683cc;
+
+  --neo-light: #ffffff;
+  --neo-dark: #cfcfcf;
+
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+}
+
+@utility neo-raised {
+  background: var(--background);
+  box-shadow: var(--shadow-neo);
+}
+
+@utility neo-raised-sm {
+  background: var(--background);
+  box-shadow: var(--shadow-neo-sm);
+}
+
+@utility neo-inset {
+  background: var(--background);
+  box-shadow: var(--shadow-neo-inset);
+}
+
+@keyframes neo-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(
+    180deg,
+    #1b4965 0%,
+    #62b6cb 25%,
+    #5fa8d3 50%,
+    #ffffff 75%,
+    #ffffff 100%
+  );
+  background-size: 300% 300%;
+  animation: neo-gradient 12s ease infinite;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
